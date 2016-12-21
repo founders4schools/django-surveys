@@ -8,7 +8,9 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils import six
 from django.utils import timezone
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from .signals import post_rating
@@ -18,34 +20,45 @@ from .managers import ReviewManager, StarRatedReviewManager
 logger = logging.getLogger(__name__)
 
 
+@python_2_unicode_compatible
 class RatingType(models.Model):
     name = models.CharField(choices=RATING_TYPES_CHOICES, max_length=30, unique=True)
     min_value = models.IntegerField()
     max_value = models.IntegerField()
 
-    def __unicode__(self):
-        return "{0!s}".format(self.name)
+    def __str__(self):
+        return six.text_type(self.get_name_display())
 
 
+@python_2_unicode_compatible
 class Rating(models.Model):
-    value = models.IntegerField(null=True)
+    value = models.IntegerField(null=True, blank=True)
     type = models.ForeignKey(RatingType, related_name='values')
 
     class Meta:
         ordering = ['value']
 
-    def __unicode__(self):
-        return "{0!s} {1!s}(s)".format(self.value, self.type.name)
+    def __str__(self):
+        plural = 's' if self.value != 1 else ''
+        return six.text_type(
+            "{0} {1}{2}".format(self.value, self.type, plural).lower()
+        )
 
     def clean(self):
         if self.value is not None:
             if self.value < self.type.min_value or self.value > self.type.max_value:
-                raise ValidationError({
-                    'value': _("Invalid Value: should be between %s and %s") % (self.type.min_value,
-                                                                                self.type.min_value)
-                })
+                msg = _("Invalid Value: should be between {0} and {1}").format(
+                    self.type.min_value,
+                    self.type.min_value,
+                )
+                raise ValidationError({'value': msg})
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(Rating, self).save(*args, **kwargs)
 
 
+@python_2_unicode_compatible
 class Review(models.Model):
     object_id = models.CharField(max_length=50, db_index=True)
     content_type = models.ForeignKey(ContentType)
@@ -64,8 +77,8 @@ class Review(models.Model):
             ("object_id", "content_type", "user"),
         ]
 
-    def __unicode__(self):
-        return "{0!s} ({1!s})".format(self.name, self.rating)
+    def __str__(self):
+        return six.text_type("{0} ({1})".format(self.name, self.rating))
 
     @property
     def name(self):
