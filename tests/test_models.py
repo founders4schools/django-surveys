@@ -10,8 +10,6 @@ Tests for `django-surveys` models module.
 
 from django.test import TestCase
 
-from surveys import models
-
 
 class TestSurveys(TestCase):
 
