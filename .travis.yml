@@ -16,7 +16,7 @@ env:
   - TOX_ENV=py35-django-110
   - TOX_ENV=py34-django-110
   - TOX_ENV=py27-django-110
-  - TOV_ENV=lint
+  - TOX_ENV=lint
 
 matrix:
   fast_finish: true
