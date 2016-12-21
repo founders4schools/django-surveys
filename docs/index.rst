@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to Django Surveys's documentation!
-=================================================================
+==========================================
 
 Contents:
 

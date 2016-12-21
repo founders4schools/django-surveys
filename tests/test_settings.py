@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sites",
     "django.contrib.sessions",
-    "surveys",
+    "surveys.apps.SurveysConfig",
     "tests",
 ]
 

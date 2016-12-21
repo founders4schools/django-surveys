@@ -28,6 +28,7 @@ class SurveysTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_rate_object_empty(self):
+        """When no data is given, the rating should be empty (skipped)"""
         self.client.login(username='tintin', password='test')
         response = self.client.post(self.url)
         self.assertContains(response, '"rating_value":null', status_code=201)
@@ -35,6 +36,7 @@ class SurveysTests(TestCase):
         self.assertIsNone(review.rating.value)
 
     def test_rate_object_data_ok(self):
+        """Should be able to only rate an object, without giving any comments"""
         self.client.login(username='tintin', password='test')
         data = {
             'rating_value': 4,
@@ -47,6 +49,7 @@ class SurveysTests(TestCase):
         self.assertEqual(review.content_object, self.post)
 
     def test_rate_object_data_comment(self):
+        """When additional info is provided, should be recorded"""
         self.client.login(username='tintin', password='test')
         data = {
             'rating_value': 4,
@@ -60,6 +63,7 @@ class SurveysTests(TestCase):
         self.assertTrue(review.would_recommend)
 
     def test_event_quick_rating(self):
+        """If going through quick rating, no need to authenticate"""
         ct = ContentType.objects.get_for_model(self.post)
         url = reverse('surveys:reviews:quick_add', args=['tintin', ct.id, str(self.post.uuid)])
         data = {
