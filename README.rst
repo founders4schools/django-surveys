@@ -1,12 +1,15 @@
-=============================
+==============
 Django Surveys
-=============================
+==============
 
-.. image:: https://badge.fury.io/py/django-surveys.png
+.. image:: https://badge.fury.io/py/django-surveys.svg
     :target: https://badge.fury.io/py/django-surveys
 
-.. image:: https://travis-ci.org/founders4schools/django-surveys.png?branch=master
+.. image:: https://travis-ci.org/founders4schools/django-surveys.svg?branch=master
     :target: https://travis-ci.org/founders4schools/django-surveys
+
+.. image:: https://readthedocs.org/projects/django-surveys/badge/?version=latest
+    :target: http://django-surveys.readthedocs.io
 
 A reusable Django app that lets users write feedback for any model
 
