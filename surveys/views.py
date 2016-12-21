@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-import logging
-
 from braces.views import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
@@ -11,14 +9,12 @@ from rest_framework.generics import CreateAPIView
 from .serializers import StarRatedReviewSerializer
 from . import app_settings
 
-logger = logging.getLogger(__name__)
-
 
 class CreateStarReviewBase(CreateAPIView):
     serializer_class = StarRatedReviewSerializer
 
     def clean_data(self, **kwargs):
-        data = kwargs.pop('data')
+        data = kwargs['data']
         data.update({
             'content_type': self.kwargs["content_type_id"],
             'object_id': self.rated_object_id(),
@@ -36,10 +32,7 @@ class CreateStarReviewBase(CreateAPIView):
 
     def get_serializer(self, *args, **kwargs):
         kwargs['data'] = self.clean_data(**kwargs)
-        serializer = super(CreateStarReviewBase, self).get_serializer(*args, **kwargs)
-        if (not serializer.is_valid()):
-            logger.debug(serializer.errors)
-        return serializer
+        return super(CreateStarReviewBase, self).get_serializer(*args, **kwargs)
 
 
 class QuickCreateStarReviewView(CreateStarReviewBase):
