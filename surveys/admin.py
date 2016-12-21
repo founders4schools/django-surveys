@@ -3,20 +3,15 @@ from __future__ import unicode_literals, absolute_import
 
 from django.contrib import admin
 
-from founders.users.utils import get_user_type
-from founders.utils.urls_resolvers import get_admin_change_url
 from . import app_settings
 from .constants import STAR_RATING_TYPE
-from .models import RatingType, Rating, Review
 
 
-@admin.register(RatingType)
 class RatingTypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'min_value', 'max_value')
     search_fields = ('name',)
 
 
-@admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_display = ('value', 'type')
     list_filter = ('type',)
@@ -38,15 +33,12 @@ class BadRatingFilter(admin.SimpleListFilter):
         return queryset
 
 
-@admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         'review_for',
         'item_type',
         'rating_value',
-        'optout_link',
         'user',
-        'user_type',
         'timestamp',
         'comment',
         'would_recommend',
@@ -71,19 +63,6 @@ class ReviewAdmin(admin.ModelAdmin):
 
     def review_for(self, obj):
         return "{0}".format(obj.content_object)
-
-    def user_type(self, obj):
-        return ', '.join([t.capitalize() for t in get_user_type(obj.user)])
-
-    def optout_link(self, obj):
-        try:
-            optout = obj.content_object.speaker.optout.by_recent().first()
-            url = get_admin_change_url(optout)
-            return """<a href="{url}" target="_blank">link</a>""".format(url=url)
-        except (TypeError, AttributeError):
-            return ""
-
-    optout_link.allow_tags = True
 
     def rating_value(self, obj):
         if obj.rating.type.name == STAR_RATING_TYPE:
