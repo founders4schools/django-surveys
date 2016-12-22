@@ -4,12 +4,19 @@ Django Surveys
 
 .. image:: https://badge.fury.io/py/django-surveys.svg
     :target: https://badge.fury.io/py/django-surveys
+    :alt: PyPI
 
 .. image:: https://travis-ci.org/founders4schools/django-surveys.svg?branch=master
     :target: https://travis-ci.org/founders4schools/django-surveys
+    :alt: Build
 
 .. image:: https://readthedocs.org/projects/django-surveys/badge/?version=latest
     :target: http://django-surveys.readthedocs.io
+    :alt: Docs
+
+.. image:: https://landscape.io/github/founders4schools/django-surveys/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/founders4schools/django-surveys/master
+    :alt: Code Health
 
 A reusable Django app that lets users write feedback for any model
 
