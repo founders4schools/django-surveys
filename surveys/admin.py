@@ -5,13 +5,16 @@ from django.contrib import admin
 
 from . import app_settings
 from .constants import STAR_RATING_TYPE
+from .models import RatingType, Rating, Review
 
 
+@admin.register(RatingType)
 class RatingTypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'min_value', 'max_value')
     search_fields = ('name',)
 
 
+@admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_display = ('value', 'type')
     list_filter = ('type',)
@@ -33,6 +36,7 @@ class BadRatingFilter(admin.SimpleListFilter):
         return queryset
 
 
+@admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         'review_for',
