@@ -2,11 +2,35 @@
 Installation
 ============
 
-At the command line::
+Install Django Surveys::
 
-    $ easy_install django-surveys
+    pip install django-surveys
 
-Or, if you have virtualenvwrapper installed::
+Add it to your `INSTALLED_APPS`:
 
-    $ mkvirtualenv django-surveys
-    $ pip install django-surveys
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'surveys.apps.SurveysConfig',
+        ...
+    )
+
+Add Django Surveys's URL patterns:
+
+.. code-block:: python
+
+    from surveys import urls as surveys_urls
+
+
+    urlpatterns = [
+        ...
+        url(r'^', include(surveys_urls)),
+        ...
+    ]
+
+Run migrations::
+
+    python manage.py migrate
+
+
