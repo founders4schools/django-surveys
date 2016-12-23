@@ -3,9 +3,9 @@ from __future__ import unicode_literals, absolute_import
 
 from django.contrib import admin
 
-from . import app_settings
 from .constants import STAR_RATING_TYPE
 from .models import RatingType, Rating, Review
+from .settings import surveys_settings
 
 
 @admin.register(RatingType)
@@ -58,7 +58,7 @@ class ReviewAdmin(admin.ModelAdmin):
     @property
     def media(self):
         media = super(ReviewAdmin, self).media
-        fa_css = app_settings.SURVEYS_FONT_AWESOME_CSS
+        fa_css = surveys_settings.FONT_AWESOME_CSS
         media.add_css({'all': (fa_css,)} if fa_css else {})
         return media
 

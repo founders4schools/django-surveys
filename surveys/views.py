@@ -7,7 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework.generics import CreateAPIView
 
 from .serializers import StarRatedReviewSerializer
-from . import app_settings
+from .settings import surveys_settings
 
 
 class CreateStarReviewBase(CreateAPIView):
@@ -44,7 +44,7 @@ class QuickCreateStarReviewView(CreateStarReviewBase):
         return instance.id
 
     def get_user_id(self):
-        lookup_kwargs = {app_settings.USER_HASH_FIELD: self.kwargs['user_uid']}
+        lookup_kwargs = {surveys_settings.USER_HASH_FIELD: self.kwargs['user_uid']}
         return get_user_model().objects.get(**lookup_kwargs).id
 
 

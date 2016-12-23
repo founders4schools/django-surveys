@@ -4,7 +4,6 @@ from __future__ import unicode_literals, absolute_import, division
 import logging
 
 from compat.models import GenericForeignKey
-from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -13,9 +12,10 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-from .signals import post_rating
+from .settings import surveys_settings
 from .constants import RATING_TYPES_CHOICES
 from .managers import ReviewManager, StarRatedReviewManager
+from .signals import post_rating
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +64,7 @@ class Review(models.Model):
     content_type = models.ForeignKey(ContentType)
     content_object = GenericForeignKey()
     rating = models.ForeignKey(Rating, related_name='reviews')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(surveys_settings.REVIEWER_MODEL)
     timestamp = models.DateTimeField(default=timezone.now)
     comment = models.TextField(blank=True)
     would_recommend = models.NullBooleanField(default=None)
