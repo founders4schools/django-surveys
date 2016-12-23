@@ -49,7 +49,7 @@ class Rating(models.Model):
             if self.value < self.type.min_value or self.value > self.type.max_value:
                 msg = _("Invalid Value: should be between {0} and {1}").format(
                     self.type.min_value,
-                    self.type.min_value,
+                    self.type.max_value,
                 )
                 raise ValidationError({'value': msg})
 

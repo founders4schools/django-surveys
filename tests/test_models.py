@@ -32,11 +32,15 @@ class SurveyModelsTests(TestCase):
 
     def test_rating_too_high(self):
         r = Rating(type=self.rating_type, value=8)
-        self.assertRaises(ValidationError, r.save)
+        with self.assertRaises(ValidationError) as cm:
+            r.save()
+        self.assertEqual(cm.exception.message_dict['value'][0], "Invalid Value: should be between 0 and 5")
 
     def test_rating_too_low(self):
         r = Rating(type=self.rating_type, value=-1)
-        self.assertRaises(ValidationError, r.save)
+        with self.assertRaises(ValidationError) as cm:
+            r.save()
+        self.assertEqual(cm.exception.message_dict['value'][0], "Invalid Value: should be between 0 and 5")
 
     def test_review_repr(self):
         rating = Rating.objects.create(type=self.rating_type, value=4)
