@@ -33,7 +33,7 @@ class RatingType(models.Model):
 @python_2_unicode_compatible
 class Rating(models.Model):
     value = models.IntegerField(null=True, blank=True)
-    type = models.ForeignKey(RatingType, related_name='values')
+    type = models.ForeignKey(RatingType, related_name='values', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['value']
@@ -61,10 +61,10 @@ class Rating(models.Model):
 @python_2_unicode_compatible
 class Review(models.Model):
     object_id = models.CharField(max_length=50, db_index=True)
-    content_type = models.ForeignKey(ContentType)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     content_object = GenericForeignKey()
     rating = models.ForeignKey(Rating, related_name='reviews')
-    user = models.ForeignKey(surveys_settings.REVIEWER_MODEL)
+    user = models.ForeignKey(surveys_settings.REVIEWER_MODEL, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now)
     comment = models.TextField(blank=True)
     would_recommend = models.NullBooleanField(default=None)
