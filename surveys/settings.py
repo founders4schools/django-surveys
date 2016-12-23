@@ -56,7 +56,7 @@ class AppSettings(object):
 surveys_settings = AppSettings(None, DEFAULTS)
 
 
-def reload_settings(*args, **kwargs):
+def reload_settings(*args, **kwargs):  # pylint:disable=unused-argument
     global surveys_settings
     setting, value = kwargs['setting'], kwargs['value']
     if setting == SETTING_NAMESPACE:
