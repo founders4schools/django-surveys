@@ -8,20 +8,20 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import six
-from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from model_utils.models import TimeStampedModel
 
-from .settings import surveys_settings
 from .constants import RATING_TYPES_CHOICES
 from .managers import ReviewManager, StarRatedReviewManager
+from .settings import surveys_settings
 from .signals import post_rating
 
 logger = logging.getLogger(__name__)
 
 
 @python_2_unicode_compatible
-class RatingType(models.Model):
+class RatingType(TimeStampedModel, models.Model):
     name = models.CharField(choices=RATING_TYPES_CHOICES, max_length=30, unique=True)
     min_value = models.IntegerField()
     max_value = models.IntegerField()
@@ -31,7 +31,7 @@ class RatingType(models.Model):
 
 
 @python_2_unicode_compatible
-class Rating(models.Model):
+class Rating(TimeStampedModel, models.Model):
     value = models.IntegerField(null=True, blank=True)
     type = models.ForeignKey(RatingType, related_name='values', on_delete=models.CASCADE)
 
@@ -59,13 +59,12 @@ class Rating(models.Model):
 
 
 @python_2_unicode_compatible
-class Review(models.Model):
+class Review(TimeStampedModel, models.Model):
     object_id = models.CharField(max_length=50, db_index=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     content_object = GenericForeignKey()
     rating = models.ForeignKey(Rating, related_name='reviews')
     user = models.ForeignKey(surveys_settings.REVIEWER_MODEL, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(default=timezone.now)
     comment = models.TextField(blank=True)
     would_recommend = models.NullBooleanField(default=None)
     rating_value = None

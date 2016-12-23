@@ -59,6 +59,7 @@ setup(
     install_requires=[
         "django",
         "django-compat>=1.0.8",
+        "django-model-utils",
         "djangorestframework>=3.2",
         "django-braces>=1.10.0",
     ],

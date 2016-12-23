@@ -43,7 +43,7 @@ class ReviewAdmin(admin.ModelAdmin):
         'item_type',
         'rating_value',
         'user',
-        'timestamp',
+        'created',
         'comment',
         'would_recommend',
     )
@@ -51,7 +51,7 @@ class ReviewAdmin(admin.ModelAdmin):
         BadRatingFilter,
         ('content_type', admin.RelatedOnlyFieldListFilter),
         ('rating', admin.RelatedOnlyFieldListFilter),
-        'timestamp',
+        'created',
     )
     search_fields = ('user__first_name', 'user__last_name', 'comment')
 
