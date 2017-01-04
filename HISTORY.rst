@@ -3,6 +3,16 @@
 History
 -------
 
+Unreleased
+++++++++++
+
+* [DOC] Added pull request template with basic checklist
+
+0.3.1 (2017-01-04)
+++++++++++++++++++
+
+* [BUG] Fix migration for replaceable foreign key `Review.user`
+
 0.3.0 (2016-12-23)
 ++++++++++++++++++
 
