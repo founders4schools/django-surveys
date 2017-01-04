@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
 import django.utils.timezone
-from django.conf import settings
+from django.db import migrations, models
+
+from surveys.settings import surveys_settings
 
 
 class Migration(migrations.Migration):
@@ -11,7 +12,7 @@ class Migration(migrations.Migration):
     replaces = [('surveys', '0001_initial'), ('surveys', '0002_auto_20151218_1000'), ('surveys', '0003_auto_20160803_1427')]
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        migrations.swappable_dependency(surveys_settings.REVIEWER_MODEL),
     ]
 
     operations = [
@@ -41,7 +42,7 @@ class Migration(migrations.Migration):
                 ('would_recommend', models.NullBooleanField(default=None)),
                 ('content_type', models.ForeignKey(to='contenttypes.ContentType')),
                 ('rating', models.ForeignKey(related_name='reviews', to='surveys.Rating')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=surveys_settings.REVIEWER_MODEL)),
             ],
         ),
         migrations.AddField(
