@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.messages",
     "django.contrib.sites",
+    "django.contrib.staticfiles",
     "django.contrib.sessions",
     "django.contrib.admin",
     "surveys.apps.SurveysConfig",
@@ -60,3 +61,5 @@ TEMPLATES = [
         }
     },
 ]
+
+STATIC_URL = '/static/'
