@@ -6,6 +6,7 @@ History
 Unreleased
 ++++++++++
 
+* Run tests against Django 1.11 and master
 * [DOC] Added pull request template with basic checklist
 
 0.3.1 (2017-01-04)
