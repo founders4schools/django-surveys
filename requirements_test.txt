@@ -7,3 +7,4 @@ django-compat>=1.0.8
 djangorestframework>=3.2
 django-braces>=1.10.0
 django-model-utils>0.5
+tox-travis
