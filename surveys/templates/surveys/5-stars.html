@@ -1,0 +1,19 @@
+{% load static from staticfiles %}
+{% load l10n %}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center">
+      <table width="250px" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          {% for i in "12345" %}
+            <td>
+              <a href="{{ object_rate_url }}?rating={{ forloop.counter }}">
+                <img src="{% static 'surveys/img/rating_star-o.png' %}"/>
+              </a>
+            </td>
+          {% endfor %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
