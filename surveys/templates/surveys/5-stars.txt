@@ -1,0 +1,4 @@
+{% load l10n %}{% for i in "12345" %}
+{{ cta }} {{ forloop.counter }}
+{{ object_rate_url }}?rating={{ forloop.counter }}
+{% endfor %}
