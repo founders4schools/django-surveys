@@ -6,6 +6,9 @@ History
 Unreleased
 ++++++++++
 
+0.4.0 (2017-03-10)
+++++++++++++++++++
+
 * [FEATURE] Template tags to send rating related emails
 * Run tests against Django 1.11 and master
 * [DOC] Added pull request template with basic checklist
