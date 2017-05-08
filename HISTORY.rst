@@ -6,6 +6,10 @@ History
 Unreleased
 ++++++++++
 
+* [BUG] `#16`_ Fix package of the library to include all templates
+
+.. _#16: https://github.com/founders4schools/django-surveys/issues/16
+
 0.4.0 (2017-03-10)
 ++++++++++++++++++
 
