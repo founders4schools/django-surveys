@@ -1,17 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import re
 import sys
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-with open('surveys/__init__.py', 'r') as fd:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        fd.read(), re.MULTILINE).group(1)
+from setuptools import setup, find_packages
 
 if sys.argv[-1] == 'publish':
     try:
@@ -30,15 +22,14 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='django-surveys',
-    version=version,
+    version='0.4.0',
     description="""A reusable Django app that lets users write feedback for any model""",
     long_description=readme + '\n\n' + history,
     author='Founders4Schools',
     author_email='dev@founders4schools.org.uk',
     url='https://github.com/founders4schools/django-surveys',
-    packages=[
-        'surveys',
-    ],
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     include_package_data=True,
     install_requires=[
         "django",
