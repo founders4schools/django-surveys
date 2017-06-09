@@ -35,7 +35,6 @@ matrix:
 
   allow_failures:
     - env: DJANGO=master
-    - env: DJANGO=1.11
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: pip install -r requirements_test.txt

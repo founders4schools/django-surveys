@@ -14,7 +14,7 @@ class CreateStarReviewBase(CreateAPIView):
     serializer_class = StarRatedReviewSerializer
 
     def clean_data(self, **kwargs):
-        data = kwargs['data']
+        data = kwargs['data'].copy()
         data.update({
             'content_type': self.kwargs["content_type_id"],
             'object_id': self.rated_object_id(),
