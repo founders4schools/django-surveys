@@ -63,7 +63,7 @@ class Review(TimeStampedModel, models.Model):
     object_id = models.CharField(max_length=50, db_index=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     content_object = GenericForeignKey()
-    rating = models.ForeignKey(Rating, related_name='reviews')
+    rating = models.ForeignKey(Rating, related_name='reviews', on_delete=models.CASCADE)
     user = models.ForeignKey(surveys_settings.REVIEWER_MODEL, on_delete=models.CASCADE)
     comment = models.TextField(blank=True)
     would_recommend = models.NullBooleanField(default=None)
