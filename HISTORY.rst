@@ -6,6 +6,9 @@ History
 Unreleased
 ++++++++++
 
+0.4.2 (2017-06-09)
+++++++++++++++++++
+
 * Add `on_delete=models.CASCADE` on foreign keys for Django 2.0
 * Django 1.11 support
 
