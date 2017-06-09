@@ -22,7 +22,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='django-surveys',
-    version='0.4.1',
+    version='0.4.2',
     description="""A reusable Django app that lets users write feedback for any model""",
     long_description=readme + '\n\n' + history,
     author='Founders4Schools',
