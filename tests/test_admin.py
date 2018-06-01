@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from surveys.constants import STAR_RATING_TYPE
 from surveys.models import RatingType, Rating, Review
