@@ -1,8 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
-import django
-
 DEBUG = True
 USE_TZ = True
 
@@ -28,18 +23,11 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-if django.VERSION < (1, 10):
-    MIDDLEWARE_CLASSES = [
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    ]
-else:
-    MIDDLEWARE = [
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    ]
+MIDDLEWARE = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+]
 
 SECRET_KEY = 'something-not-secret'
 
