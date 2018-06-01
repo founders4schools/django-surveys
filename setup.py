@@ -34,7 +34,7 @@ setup(
     install_requires=[
         "django",
         "django-model-utils",
-        "djangorestframework>=3.2",
+        "djangorestframework>=3.7",
         "django-braces>=1.10.0",
     ],
     license="MIT",
