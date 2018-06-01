@@ -57,4 +57,4 @@ deploy:
     repo: founders4schools/django-surveys
     tags: true
     python: 3.6
-    env: TOXENV=py36-django111
+    condition: $TOXENV = py36-django111
