@@ -6,6 +6,9 @@ History
 Unreleased
 ++++++++++
 
+1.0.0 (2018-06-01)
+++++++++++++++++++
+
 * Drop support for Django <1.11 and Python <3.5
 
 0.4.2 (2017-06-09)
