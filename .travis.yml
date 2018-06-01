@@ -3,38 +3,32 @@
 language: python
 
 python:
-  - "2.7"
-  - "3.4"
   - "3.5"
+  - "3.6"
+  - "3.7-dev"
+
+sudo: false
 
 env:
-  - DJANGO=1.8
-  - DJANGO=1.9
-  - DJANGO=1.10
   - DJANGO=1.11
+  - DJANGO=2.0
+  - DJANGO=2.1
   - DJANGO=master
 
 matrix:
   fast_finish: true
   include:
     - python: "3.6"
-      env: DJANGO=master
-    - python: "3.6"
-      env: DJANGO=1.11
-    - python: "3.3"
-      env: DJANGO=1.8
-    - python: "2.7"
-      env: TOXENV="lint"
-    - python: "2.7"
       env: TOXENV="docs"
   exclude:
-    - python: "2.7"
-      env: DJANGO=master
-    - python: "3.4"
-      env: DJANGO=master
+    - python: "3.7-dev"
+      env: DJANGO=1.11
 
   allow_failures:
+    - env: DJANGO=2.0
+    - env: DJANGO=2.1
     - env: DJANGO=master
+    - python: "3.7-dev"
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: pip install -r requirements_test.txt
@@ -59,8 +53,8 @@ deploy:
   password:
     secure: LZvIAhq8BCq9rWDD6NLbTQIXlUt3OReQ1x2DX2RePXi5X7DRGbwTgRYkZ4ZTJlWhqiw3/VwMSQlLnZ4UMn1FmjBgUWOVpkcnIvavt3xSAoLJf9+8x5wkx9K/twCU/4o3xFYMXm6vk3cNSDoJl52nm2/6vY2e5NQqyz1t65EfsAX1FxG62+H+ldUglyIVS+sqIybKwVT5mrJYp9Sz1n8vX9pm2PgLyeUqg63lsj5xHqsqXI3tb1hPloHBlIP6gLnq1QlHEU/4Rqvv98zUbH6dHjCEDoxdiQxrsbmvAblzj18F4nSZ+kz9K4uLYRIMJ9lRNtnd1BpQxw1XctV191klKaHpcl+g0UP36oo+psb3c9Kh2MZ0G0uJTHRzlKEqG596f3TeHD3KkB/4PVD4vXMjMNYpHtB9nevUo7pgI2daA/aAnGcvr3WVo2K4ppm8/B1v2nx3zWbcxDuYwTL1hePSt9gljqMmKFD7R+uDvIQmBECJxxq8VLxVfWYjAyToFbqinEJqNXeX9SyAogzo+a8gVb29t68jPE5RrD0AVWTXgvBQhs/2qNsidVpS0gur9001D7Acx8ra27YfrkmAZsr5RaAzBENtbrChcsoneDLjKsMFY/81l5RyJhLmkcfDFCkinpWwBaFZjlEcft13N91wO4b+6yFHYhZrUzkJMh11cXU=
   on:
-    tags: true
-    distributions: sdist bdist_wheel
-    repo: founders4schools/django-surveys
     branch: master
-    python: 3.5
+    repo: founders4schools/django-surveys
+    tags: true
+    python: 3.6
+    env: TOXENV=py36-django111
