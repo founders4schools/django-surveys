@@ -1,4 +1,3 @@
-# -*- coding: utf-8
 """
 App settings inspired by Django REST Framework's
 
@@ -11,8 +10,6 @@ project's settings.py::
         'REVIEWER_MODEL': 'users.Reviewer',
     }
 """
-from __future__ import unicode_literals, absolute_import
-
 from django.conf import settings
 from django.core.signals import setting_changed
 
