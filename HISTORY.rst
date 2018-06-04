@@ -6,6 +6,9 @@ History
 Unreleased
 ++++++++++
 
+1.1.0 (2018-06-04)
+++++++++++++++++++
+
 * Add support for Django 2.0
 
 1.0.0 (2018-06-01)
