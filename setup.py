@@ -33,9 +33,8 @@ setup(
     include_package_data=True,
     install_requires=[
         "django",
-        "django-compat>=1.0.8",
         "django-model-utils",
-        "djangorestframework>=3.2",
+        "djangorestframework>=3.7",
         "django-braces>=1.10.0",
     ],
     license="MIT",
@@ -45,6 +44,7 @@ setup(
         'Development Status :: 3 - Alpha',
         'Framework :: Django',
         'Framework :: Django :: 1.11',
+        'Framework :: Django :: 2.0',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',

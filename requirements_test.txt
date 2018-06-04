@@ -1,10 +1,5 @@
 coverage==4.2
-mock>=1.0.1
 flake8>=2.1.0
 tox>=1.7.0
 codecov
-django-compat>=1.0.8
-djangorestframework==3.5
-django-braces>=1.10.0
-django-model-utils>0.5
 tox-travis

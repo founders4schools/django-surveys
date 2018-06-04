@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.forms import Media
 
 from .constants import STAR_RATING_TYPE
 from .models import RatingType, Rating, Review
@@ -54,10 +55,9 @@ class ReviewAdmin(admin.ModelAdmin):
 
     @property
     def media(self):
-        media = super(ReviewAdmin, self).media
-        fa_css = surveys_settings.FONT_AWESOME_CSS
-        media.add_css({'all': (fa_css,)} if fa_css else {})
-        return media
+        base = super(ReviewAdmin, self).media
+        custom = Media(css={'all': [surveys_settings.FONT_AWESOME_CSS]})
+        return base + custom
 
     def item_type(self, obj):
         return "{0}".format(obj.content_type).capitalize()

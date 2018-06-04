@@ -5,5 +5,5 @@ from surveys.urls import urlpatterns as surveys_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include(surveys_urls, namespace='surveys')),
+    url(r'^', include((surveys_urls, "surveys"), namespace='surveys')),
 ]

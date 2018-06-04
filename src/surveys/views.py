@@ -21,7 +21,7 @@ class CreateStarReviewBase(CreateAPIView):
 
     def get_user_id(self):
         request_user = self.request.user
-        if request_user.is_authenticated():
+        if request_user.is_authenticated:
             return request_user.id
 
     def rated_object_id(self):
